@@ -1,0 +1,125 @@
+﻿<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Delivery MVP - Pedido WhatsApp</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+
+    <header>
+        <div class="logo-area">
+            <h1>🍔 Delivery da Loja</h1>
+            <p>O melhor sabor da cidade entregue na sua casa.</p>
+        </div>
+        <a href="#" onclick="alert('Área Admin: Necessita de Backend (Supabase/Firebase) para funcionar.')" style="font-size:0.8rem; color: white;">Admin</a>
+    </header>
+
+    <main>
+        <section id="tela-home" class="screen active">
+            <h2>O que você deseja hoje?</h2>
+            <div class="category-grid">
+                <div class="card-category" onclick="abrirCardapio('salgados')">
+                    <span class="material-icons">lunch_dining</span>
+                    <h3>Salgados</h3>
+                </div>
+                <div class="card-category" onclick="abrirCardapio('petiscos')">
+                    <span class="material-icons">tapas</span>
+                    <h3>Petiscos</h3>
+                </div>
+                <div class="card-category" onclick="abrirCardapio('almoco')">
+                    <span class="material-icons">restaurant</span>
+                    <h3>Almoço</h3>
+                </div>
+            </div>
+        </section>
+
+        <section id="tela-cardapio" class="screen hidden">
+            <div class="header-nav">
+                <button onclick="navegarPara('tela-home')" class="btn-voltar">
+                    <span class="material-icons">arrow_back</span> Voltar
+                </button>
+                <h2 id="titulo-categoria">Categoria</h2>
+            </div>
+
+            <div id="lista-produtos" class="product-list">
+            </div>
+        </section>
+
+        <section id="tela-carrinho" class="screen hidden">
+            <div class="header-nav">
+                <button onclick="navegarPara('tela-home')" class="btn-voltar">
+                    <span class="material-icons">arrow_back</span> Continuar Comprando
+                </button>
+                <h2>Fechar Pedido</h2>
+            </div>
+
+            <div id="itens-carrinho" class="cart-items">
+            </div>
+
+            <div class="checkout-form">
+                <h3>📍 Onde entregamos?</h3>
+
+                <div class="form-group">
+                    <label>Seu Nome *</label>
+                    <input type="text" id="nome" placeholder="Digite seu nome">
+                </div>
+
+                <div class="row">
+                    <div class="form-group" style="flex: 2;">
+                        <label>Rua/Av *</label>
+                        <input type="text" id="rua" placeholder="Nome da rua">
+                    </div>
+                    <div class="form-group" style="flex: 1;">
+                        <label>Nº *</label>
+                        <input type="number" id="numero" placeholder="123">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label>Bairro *</label>
+                    <input type="text" id="bairro" placeholder="Seu bairro">
+                </div>
+
+                <div class="form-group">
+                    <label>Complemento</label>
+                    <input type="text" id="complemento" placeholder="Apto, fundos...">
+                </div>
+
+                <div class="form-group">
+                    <label>Referência</label>
+                    <input type="text" id="referencia" placeholder="Ao lado de...">
+                </div>
+            </div>
+
+            <div class="cart-summary" style="margin-top: 20px; border-top: 1px solid #ddd; padding-top: 15px;">
+                <div class="total-row" style="margin-bottom: 15px;">
+                    <span>Total a pagar:</span>
+                    <span id="total-carrinho-tela" style="color: var(--primary-color); font-size: 1.5rem;">R$ 0,00</span>
+                </div>
+
+                <button type="button" onclick="finalizarPedido()" class="btn-whatsapp">
+                    <span>Enviar Pedido no WhatsApp</span>
+                    <span class="material-icons">send</span>
+                </button>
+            </div>
+
+            <div style="height: 50px;"></div>
+        </section>
+    </main>
+
+    <div id="barra-carrinho" class="floating-bar hidden" onclick="navegarPara('tela-carrinho')">
+        <div class="info">
+            <span id="contador-itens">0</span> item(s)
+        </div>
+        <div class="total">
+            <span id="total-flutuante">R$ 0,00</span>
+            <span class="material-icons">shopping_cart</span>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
